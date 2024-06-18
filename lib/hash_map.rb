@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'linked_list'
 
+# handle making a hashmap out of keys and values
 class HashMap
   attr_reader :length, :buckets
 
@@ -59,6 +62,7 @@ class HashMap
     else
       @buckets[hash(key)].remove(key)
       @buckets[hash(key)].removed
+      @length -= 1
     end
   end
 
@@ -90,34 +94,3 @@ class HashMap
     entry_arr.flatten(1)
   end
 end
-
-hm = HashMap.new
-hm.set('Fred', 1)
-hm.set('George', 2)
-hm.set('Harry', 3)
-hm.set('Ginny', 4)
-hm.set('Ron', 5)
-hm.set('Sirius', 6)
-hm.set('Luna', 7)
-hm.set('Remus', 8)
-hm.set('Severus', 9)
-hm.set('Albus', 10)
-hm.set('Cho', 11)
-hm.set('James', 15)
-hm.set('Dobby', 18)
-hm.set('Arthur', 22)
-hm.set('Charlie', 25)
-hm.set('Dolores', 27)
-hm.set('Samuel', 69)
-hm.set('Draco', 16)
-hm.set('Lily', 14)
-hm.set('Rubeus', 17)
-hm.set('Hedwig', 14)
-hm.set('Myrtle', 15)
-hm.set('Neville', 19)
-hm.set('Alastor', 20)
-hm.set('Molly', 21)
-hm.set('Argus', 26)
-hm.set('Cedric', 12)
-hm.set('Minerva', 13)
-p hm.remove('Kat')

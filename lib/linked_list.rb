@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'node'
 
+# Handles creating a linked list for the hash map
 class LinkedList
   attr_reader :head, :tail, :removed
 
