@@ -1,7 +1,7 @@
 require_relative 'node'
 
 class LinkedList
-  attr_reader :head, :tail
+  attr_reader :head, :tail, :removed
 
   def initialize
     @head = nil
@@ -49,28 +49,65 @@ class LinkedList
   def contains?(value)
     element = @head
     until element.nil?
-      return true if element.data == value
+      return true if element.key == value
 
       element = element.next_node
     end
     false
   end
 
+  def keys
+    element = @head
+    keys = []
+    until element.nil?
+      keys << element.key
+      element = element.next_node
+    end
+    keys
+  end
+
+  def values
+    element = @head
+    values = []
+    until element.nil?
+      values << element.data
+      element = element.next_node
+    end
+    values
+  end
+
+  def keys_with_values
+    element = @head
+    keys_with_values = []
+    until element.nil?
+      keys_with_values << [element.key, element.data]
+      element = element.next_node
+    end
+    keys_with_values
+  end
+
   def find(value)
     element = @head
-    index = 0
     until element.nil?
-      return index if element.data == value
+      return element.data if element.key == value
 
       element = element.next_node
-      index += 1
     end
+  end
+
+  def remove(value)
+    element = @head
+    element = element.next_node until element.next_node.key == value
+    prev = element
+    element = element.next_node
+    @removed = element.data
+    prev.next_node = element.next_node
   end
 
   def to_s
     element = @head
     until element.nil?
-      print "(#{element.data}) -> "
+      print "(#{element.key}) -> "
       element = element.next_node
     end
     puts 'nil'
